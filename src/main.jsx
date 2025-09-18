@@ -1,7 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import App from "./App.jsx";
+import Home from "./rotas/Home.jsx";
+import Favoritos from "./rotas/Favoritos.jsx";
 import { createGlobalStyle } from "styled-components";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./componentes/Header/index.jsx";
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -30,7 +33,7 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
+  // display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
@@ -81,6 +84,12 @@ li {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <GlobalStyle />
-    <App />
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+      </Routes>
+    </BrowserRouter>
   </StrictMode>
 );
